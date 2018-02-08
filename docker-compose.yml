@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+
+  suitecrm:
+    build: .
+    image: suitecrm:latest
+    container_name: suitecrm
+    ports:
+      - "80:80"
+
+  suitecrm_db:
+    image: mysql:latest
+    container_name: suitecrm_db
+    restart: always
+    environment:
+      - MYSQL_DATABASE=suitecrm
+      - MYSQL_USER=suitecrm
+      - MYSQL_PASSWORD=SuiteCRM
+      - MYSQL_ALLOW_EMPTY_PASSWORD=no
+      - MYSQL_ROOT_PASSWORD=mysql
+    ports:
+      - "3306:3306"
